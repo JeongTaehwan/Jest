@@ -1,0 +1,25 @@
+{
+  "name": "jest",
+  "version": "1.0.0",
+  "description": "description",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeongTaehwan/Jest.git"
+  },
+  "keywords": [
+    "[]"
+  ],
+  "author": "\"\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeongTaehwan/Jest/issues"
+  },
+  "homepage": "https://github.com/JeongTaehwan/Jest#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
