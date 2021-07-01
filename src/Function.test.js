@@ -41,3 +41,17 @@ test('0은 false 입니다', () => {
 test('빈 문자열이 아니면 true입니다', () => {
     expect(fn.add("Hello", "World")).toBeTruthy(); // 값이 false면 통과함
 });
+
+test('ID는 10자 이하여야 한다.', () => {
+    const id = 'THE_BLACK';
+    expect(id.length).toBeLessThanOrEqual(10); // toBeLessThanOrEqual : 작거나 같다.
+});
+
+test('비밀번호 4자리', () => {
+    const pw = '1234';
+    expect(pw.length).toEqual(4);
+});
+
+test('0.1 + 0.2 = 0.3', () => {
+    expect(fn.add(0.1, 0.2)).toBeCloseTo(0.3); // 소수 더하기 시 근사치를 구분해줌
+});
