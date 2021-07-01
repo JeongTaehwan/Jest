@@ -29,3 +29,15 @@ test('이름과 나이를 전달받아서 객체를 반환해줘 toStrictEqual',
         age: 30,
     });
 });
+
+test('null은 null입니다.', () => {
+    expect(null).toBeNull(); // 값이 null 값이면 통과함
+});
+
+test('0은 false 입니다', () => {
+    expect(fn.add(1, -1)).toBeFalsy(); // 값이 false면 통과함
+});
+
+test('빈 문자열이 아니면 true입니다', () => {
+    expect(fn.add("Hello", "World")).toBeTruthy(); // 값이 false면 통과함
+});
