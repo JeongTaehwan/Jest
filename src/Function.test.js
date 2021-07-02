@@ -55,3 +55,21 @@ test('비밀번호 4자리', () => {
 test('0.1 + 0.2 = 0.3', () => {
     expect(fn.add(0.1, 0.2)).toBeCloseTo(0.3); // 소수 더하기 시 근사치를 구분해줌
 });
+
+// 문자열과 관련된 작업 정규표현식과 toMatch 사용
+
+test('사용자중에 Taehwan이라는 사람이 있나?', () => {
+    expect('Taehwan').toMatch(/Taehwan/i); // 대소문자 구분을 없애려면 뒤에 "i"를 붙여야함
+})
+
+// 배열에서 특정 요쇼가 있는지를 보려면 toContain을 사용해야함
+
+test('유저중 Taehwan이라는 사람이 있나?', () => {
+    const user = 'Taehwan';
+    const userlist = ['Taehyeon', 'Minhyeok', 'Taehwan'];
+    expect(userlist).toContain(user);
+});
+
+test('이 코드가 에러가 나나?', () => {
+    expect(() => fn.ThrowErr).toThrow();
+});
