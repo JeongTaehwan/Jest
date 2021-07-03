@@ -14,9 +14,8 @@ test("3초 뒤 불러올 값은 'Taehwan'", done => { // done이 호출되기 �
 })
 
 // resolves, rejects 라는 matcher가 존재함
-test("3초 뒤 받아올 나이는 18", () => {
-    // return fn.getAge().then(age => { // promise사용시 return을 해주어야 함
-    //     expect(age).toBe(18);
-    // });
-    return expect(fn.getAge()).resolve.toBe(18);
+test("3초 뒤 받아올 나이는 18", async () => {
+    // const age = await fn.getAge();
+    // expect(age).toBe(18);
+    await expect(fn.getAge()).resolves.toBe(18);
 });
