@@ -5,17 +5,15 @@ const fn = require("./Function")
 // .calls로 알 수 있는 것은 함수가 총 몇 번 호출 됬는지와 호출될 때 전달 된 값을 알 수 있음
 // .results에는 return된 값이 배열로 들어있음
 // ReturnValueOnce를 이용하여 실행할 때 마다 각각 다른 값을 넣어 줄 수 있음
-const mockFn = jest.fn();
+// mockResolvedValue는 비동기 함수를 흉내낼 수 있음
+// jest.mock으로 fn을 모킹모듈로 만듬
+// 모킹모듈을 활용하면 선언한 함수가 작동하지 않음
 
-mockFn
-    .mockReturnValueOnce(true)
-    .mockReturnValueOnce(false)
-    .mockReturnValueOnce(true)
-    .mockReturnValueOnce(false)
-    .mockReturnValue(true)
+jest.mock("./Function");
 
-const result = [1, 2, 3, 4, 5].filter(num => mockFn(num));
+fn.createUser.mockReturnValue({ name: 'Taehwan' });
 
-test('홀수는 1,3,5 이다', () => {
-    expect(result).toStrictEqual([1, 3, 5]); // 배열을 확인할 땐 toStrictEqual을 사용해야 함 
+test('유저를 만든다', () => {
+    const user = fn.createUser('Taehwan');
+    expect(user.name).toBe('Taehwan');
 })
