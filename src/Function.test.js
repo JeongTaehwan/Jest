@@ -1,4 +1,5 @@
 const fn = require("./Function")
+const mockFn = jest.fn();
 
 // mock function : 테스트하기 위해 흉내만 내는 함수
 // .mock 프로퍼티에 호출된 값이 고스란히 저장되 있다는 강점이 있음 
@@ -9,11 +10,22 @@ const fn = require("./Function")
 // jest.mock으로 fn을 모킹모듈로 만듬
 // 모킹모듈을 활용하면 선언한 함수가 작동하지 않음
 
-jest.mock("./Function");
+mockFn(10, 20);
+mockFn();
+mockFn(30, 40);
 
-fn.createUser.mockReturnValue({ name: 'Taehwan' });
+test('한 번 이상 호출?', () => {
+    expect(mockFn).toBeCalled(); // toBeCalled는 한 번이라도 호출됬으면 통과
+});
 
-test('유저를 만든다', () => {
-    const user = fn.createUser('Taehwan');
-    expect(user.name).toBe('Taehwan');
-})
+test('정확히 3번 호출?', () => {
+    expect(mockFn).toBeCalledTimes(3); // toBeCalledTimes는 정확한 호출 회수를 의미
+});
+
+test('10, 20을 전달받은 함수가 있는가?', () => {
+    expect(mockFn).toBeCalledWith(10, 20); // toBeCalledWith는 인수로 어떤 값들을 받았는지 체크함
+});
+
+test('마지막 함수는 30,40을 받았는가?', () => {
+    expect(mockFn).lastCalledWith(30, 40); // lastCalledWith는 마지막으로 받아온 인수만을 확인함
+});
