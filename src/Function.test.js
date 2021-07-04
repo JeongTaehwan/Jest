@@ -5,13 +5,20 @@ const fn = require("./Function")
 // calls로 알 수 있는 것은 함수가 총 몇 번 호출 됬는지와 호출될 때 전달 된 값을 알 수 있음
 const mockFn = jest.fn();
 
-mockFn(1);
-mockFn(2);
+function forEachAdd1(arr) {
+    arr.forEach(num => {
+        mockFn(num + 1);
+    });
+};
 
-test('함수는 2번 실행됨', () => {
-    expect(mockFn.mock.calls.length).toBe(2);
-})
+forEachAdd1([10, 20, 30]);
 
-test('두 번째로 호출된 mock함수의 첫번째 인수 값은 2이다', () => {
-    expect(mockFn.mock.calls[1][0]).toBe(2);
+test('Mock함수 호출은 총 3번 됩니다.', () => {
+    expect(mockFn.mock.calls.length).toBe(3);
+});
+
+test('호출 된 값들은 11,21,31 입니다', () => {
+    expect(mockFn.mock.calls[0][0]).toBe(11);
+    expect(mockFn.mock.calls[1][0]).toBe(21);
+    expect(mockFn.mock.calls[2][0]).toBe(31);
 })
